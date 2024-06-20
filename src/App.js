@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import { Component, } from 'react';
+import { TodoProvider } from './context/todoContext';
+import Header from './components/Header';
+import AddTodo from './components/AddTodo'
+import GetTodo from './components/GetTodo';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+
+  render(){
+    return (
+    <TodoProvider>
+      <Header/>
+      <Routes>
+        <Route excat path='/get-all-todos' element={<Home/>}/>
+        <Route exact path='/add-todo' element={<AddTodo/>} />
+        <Route exact path='/get-todo/:id' element={<GetTodo/>}/>
+      </Routes>
+    </TodoProvider>
+  )
+}
 }
 
 export default App;
